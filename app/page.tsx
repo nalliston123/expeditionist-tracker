@@ -65,7 +65,11 @@ export default function Home() {
               />
             </div>
             <div className="w-full lg:w-1/3 h-[calc(100vh-8rem)] sm:h-[calc(100vh-12rem)] lg:h-full">
-              <CountryList selectedCountries={selectedCountries} onCountryToggle={handleCountryToggle} />
+              <CountryList 
+              selectedCountries={selectedCountries} 
+              onCountryToggle={handleCountryToggle}
+              className="text-xl"
+            />
             </div>
           </div>
         </div>

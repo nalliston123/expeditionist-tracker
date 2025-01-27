@@ -204,9 +204,10 @@ const countries = [
 interface CountryListProps {
   selectedCountries: string[]
   onCountryToggle: (country: string) => void
+  className?: string;
 }
 
-export default function CountryList({ selectedCountries, onCountryToggle }: CountryListProps) {
+export default function CountryList({ selectedCountries, onCountryToggle, className }: CountryListProps) {
   const [searchTerm, setSearchTerm] = useState("")
 
   const filteredCountries = useMemo(() => {
@@ -216,7 +217,7 @@ export default function CountryList({ selectedCountries, onCountryToggle }: Coun
   const selectedCount = useMemo(() => selectedCountries.length, [selectedCountries])
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 h-full w-full flex flex-col overflow-hidden">
+    <div className={`bg-white rounded-lg shadow-md p-4 h-full w-full flex flex-col overflow-hidden ${className}`}>
       <div className="flex flex-col space-y-2 mb-2">
         <Input
           type="text"
@@ -224,6 +225,7 @@ export default function CountryList({ selectedCountries, onCountryToggle }: Coun
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="h-10 min-h-[40px]"
+          style={{ fontSize: '16px' }}
         />
         <div className="text-sm text-gray-500 text-right">
           {selectedCount}/{countries.length}
@@ -231,7 +233,7 @@ export default function CountryList({ selectedCountries, onCountryToggle }: Coun
       </div>
       <div className="flex-grow overflow-y-auto border rounded-md p-2" style={{ minHeight: "200px" }}>
         {filteredCountries.map((country) => (
-          <div key={country} className="flex items-center space-x-2 py-1">
+          <div key={country} className="flex items-center space-x-2 py-1.5">
             <Checkbox
               id={country}
               checked={selectedCountries.includes(country)}
@@ -240,6 +242,7 @@ export default function CountryList({ selectedCountries, onCountryToggle }: Coun
             <label
               htmlFor={country}
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              style={{ fontSize: '16px' }}
             >
               {country}
             </label>
