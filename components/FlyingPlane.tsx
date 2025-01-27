@@ -13,9 +13,9 @@ const FlyingPlane: React.FC<FlyingPlaneProps> = ({ trigger }) => {
   useEffect(() => {
     if (trigger !== lastTrigger && !isFlying) {
       const startX = -100
-      const startY = window.innerHeight * (0.7 + Math.random() * 0.3) // Bottom 30% of the screen
+      const startY = window.innerHeight * (0.7 + Math.random() * 0.35) // Bottom 35% of the screen
       const endX = window.innerWidth + 100
-      const endY = window.innerHeight * Math.random() * 0.3 // Top 30% of the screen
+      const endY = window.innerHeight * Math.random() * 0.35 // Top 35% of the screen
       const duration = 1500 + Math.random() * 1000 // 1.5-2.5 seconds
 
       setStyle({
