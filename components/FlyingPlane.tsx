@@ -8,9 +8,10 @@ interface FlyingPlaneProps {
 const FlyingPlane: React.FC<FlyingPlaneProps> = ({ trigger }) => {
   const [isFlying, setIsFlying] = useState(false)
   const [style, setStyle] = useState({})
+  const [lastTrigger, setLastTrigger] = useState<number | null>(null)
 
   useEffect(() => {
-    if (trigger) {
+    if (trigger !== lastTrigger && !isFlying) {
       const startX = -100
       const startY = window.innerHeight * (0.7 + Math.random() * 0.3) // Bottom 30% of the screen
       const endX = window.innerWidth + 100
@@ -27,6 +28,7 @@ const FlyingPlane: React.FC<FlyingPlaneProps> = ({ trigger }) => {
       })
 
       setIsFlying(true)
+      setLastTrigger(trigger)
 
       setTimeout(() => {
         setStyle((prevStyle) => ({
@@ -40,7 +42,7 @@ const FlyingPlane: React.FC<FlyingPlaneProps> = ({ trigger }) => {
         setIsFlying(false)
       }, duration + 100) // Add a small buffer to ensure the animation completes
     }
-  }, [trigger])
+  }, [trigger, isFlying, lastTrigger])
 
   if (!isFlying) return null
 
